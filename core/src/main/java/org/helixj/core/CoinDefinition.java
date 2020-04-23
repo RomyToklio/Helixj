@@ -32,7 +32,7 @@ public class CoinDefinition {
     };
     public static final UnspentAPIType UnspentAPI = UnspentAPIType.Cryptoid;
 
-    public static final String BLOCKEXPLORER_BASE_URL_PROD = "http://explorer.dash.org/";    //blockr.io
+    public static final String BLOCKEXPLORER_BASE_URL_PROD = "http://explorer.helix-crypto.com/";    //blockr.io
     public static final String BLOCKEXPLORER_ADDRESS_PATH = "address/";             //blockr.io path
     public static final String BLOCKEXPLORER_TRANSACTION_PATH = "tx/";              //blockr.io path
     public static final String BLOCKEXPLORER_BLOCK_PATH = "block/";                 //blockr.io path
@@ -75,8 +75,8 @@ public class CoinDefinition {
     //
     // Helix 0.12
     //
-    public static final int PROTOCOL_VERSION = 80011;          //version.h PROTOCOL_VERSION
-    public static final int MIN_PROTOCOL_VERSION = 80011;        //version.h MIN_PROTO_VERSION
+    public static final int PROTOCOL_VERSION = 80012;          //version.h PROTOCOL_VERSION
+    public static final int MIN_PROTOCOL_VERSION = 80012;        //version.h MIN_PROTO_VERSION
 
     public static final int BLOCK_CURRENTVERSION = 2;   //CBlock::CURRENT_VERSION
     public static final int MAX_BLOCK_SIZE = 1 * 1000 * 1000;
@@ -110,11 +110,13 @@ public class CoinDefinition {
 
     //net.cpp strDNSSeed
     static public String[] dnsSeeds = new String[] {
-        "seed1.helix-crypto.nl",
-        "seed2.helix-crypto.nl",
-        "seed3.helix-crypto.nl",
-        "seed4.helix-crypto.nl",
-        "seed5.helix-crypto.nl"
+        "crazyseeder.helix-crypto.com",
+        "173.212.198.12",
+        "seed1.helix-crypto.com",
+        "seed2.helix-crypto.com",
+        "seed3.helix-crypto.com",
+        "seed4.helix-crypto.com",
+        "seed5.helix-crypto.com"
     };
 
     public static int minBroadcastConnections = 3;   //0 for default; we need more peers.
@@ -166,9 +168,8 @@ public class CoinDefinition {
     public static BigInteger proofOfWorkLimit = Utils.decodeCompactBits(0x207fffffL);  //main.cpp bnProofOfWorkLimit (~uint256(0) >> 20); // digitalcoin: starting difficulty is 1 / 2^12
 
     static public String[] testnetDnsSeeds = new String[] {
-            "pivx-testnet.seed.fuzzbawls.pw",
-            "pivx-testnet.seed2.fuzzbawls.pw",
-            "s3v3nh4cks.ddns.net"
+            "testnetseed",
+
     };
     //from main.h: CAlert::CheckSignature
     public static final String SATOSHI_KEY = "043747a78571fb1aaa306f9b51c03ab0bd39b7186f7c9c321adb7c50f7f2955c7f8254c530e134bd886ea8f8cfabe4bed01b25b7cd3245709cd2f7fd5e263c881a";
@@ -185,6 +186,9 @@ public class CoinDefinition {
     public static void initCheckpoints(Map<Integer, Sha256Hash> checkpoints)
     {
         checkpoints.put(    0, Sha256Hash.wrap("79a3c45d6e2760efb4d6de76d34b1f4833ba919bc114e1da0f671b1700a78f08"));
+        checkpoints.put(    54, Sha256Hash.wrap("000000035eb76b5ce0362a4ef3c542bebe50ac6cd110e9b81d1ed45c49442e26"));
+        checkpoints.put(    55, Sha256Hash.wrap("00000003ad0648bc2a2d27634d9962650ffabe9f78a3a4d8772e148c3f1b8ead"));
+        checkpoints.put(    56, Sha256Hash.wrap("00000003f6036f9f58b327f70f874d7bdb1db0b3db44d2812abd872f35a7c5fb"));
         checkpoints.put( 1000, Sha256Hash.wrap("0000000000035895b91ae55236883f81cf3fcb62f0d6cadaf49a0eca7ef1e07b"));
         checkpoints.put(10000, Sha256Hash.wrap("000000000001cefb823e793c7c27ad4b74feb5990e7f68127a10ef59b9ab19c7"));
         checkpoints.put(50000, Sha256Hash.wrap("000000000009cdaeb5cf0ef84355153aa38e942d750e6000d73d04a4ce4e6c9b"));
@@ -193,7 +197,21 @@ public class CoinDefinition {
         checkpoints.put(200000, Sha256Hash.wrap("25d5407abbca5b217bdebe143fbd06427980e46e14e516150d3c58b77e03ea91"));
         checkpoints.put(250000, Sha256Hash.wrap("5733cac18dfbad3a95b9343272bab90670b0df8b7ff7c0353249b9601002f64e"));
         checkpoints.put(262639, Sha256Hash.wrap("ead6534cc6ff592028f860a9bc17aa4aa0759de6261a534e4c87d2e91890aece"));
-        checkpoints.put(306705, Sha256Hash.wrap("273d590dd52ff6a352db7e676143da6a17dda6926513e2d3dd25c62bd3e730af"));;
+        checkpoints.put(306705, Sha256Hash.wrap("273d590dd52ff6a352db7e676143da6a17dda6926513e2d3dd25c62bd3e730af"));
+        checkpoints.put(350000, Sha256Hash.wrap("95dba3af31b2eee5df3e5d4bc87c7860a523a0d1efaea9b5b590ad5f8bb9acea"));
+        checkpoints.put(400000, Sha256Hash.wrap("f7f411e13a8559b82defd209611b659794ad59a2f10ef0e89630e990dedb5083"));
+        checkpoints.put(450000, Sha256Hash.wrap("1a22f0fd98f1dd900108c8b5ede8de256dba79596bd781aa0dfb00bf4e2331fd"));
+        checkpoints.put(500000, Sha256Hash.wrap("3f7e8645f8b40288ef94812ad64fb2b1b6f8d7c5006db521c2f6c4104552acd1"));
+        checkpoints.put(550000, Sha256Hash.wrap("c86d2d309bbc461cb393958d2d6845fbc82438d73b04a9f5db7bf31a2cddbe1c"));
+        checkpoints.put(600000, Sha256Hash.wrap("d18555608c63695084e8563e69440ea5f748f93837ff430e8254813bbadb1b66"));
+        checkpoints.put(609119, Sha256Hash.wrap("9004db2b6444af84d4cf61b59b250ba65fefdf2f3e9ed48b9c1114b2f2bfaa2a"));
+        checkpoints.put(609120, Sha256Hash.wrap("19964e3827800eeb75cfb96de0a8d1818a7e7ba82fbe65128b6d2d2a30cdf6e9"));
+        checkpoints.put(609121, Sha256Hash.wrap("89fc025c860d4028ef26ffd037c53b6275d46e5806a8bfeb33066ff8c3dcac02"));
+        checkpoints.put(650000, Sha256Hash.wrap("0647bd41acf0c9defe91699ca3901ca7cf86be7f528c3fd26b14f9ce2531fd63"));
+        checkpoints.put(700000, Sha256Hash.wrap("159dc1e73e968a793282f686a3408afe41c72c358019ccb9e22711a66fda77b9"));
+        checkpoints.put(750000, Sha256Hash.wrap("80a663fb9a25eadb265fa6965f2ff7e6e6217dba9e7a7ff16cc389fe3348423f"));
+        checkpoints.put(800000, Sha256Hash.wrap("a32bc7b377cc193eb438f5577165e793cf79aa517abe5582d801c6917a553e5a"));
+        checkpoints.put(838474, Sha256Hash.wrap("9c199cb19eb94c619c007ec267466c49ad65dc28d62f52fba9a6e5001f817ffb"));;
     }
 
     //Unit Test Information
