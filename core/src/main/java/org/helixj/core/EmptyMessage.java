@@ -22,7 +22,7 @@ import java.io.OutputStream;
 
 /**
  * <p>Parent class for header only messages that don't have a payload.
- * Currently this includes getaddr, verack and special pivxj class UnknownMessage.</p>
+ * Currently this includes getaddr, verack and special helixj class UnknownMessage.</p>
  * 
  * <p>Instances of this class are not safe for use by multiple threads.</p>
  */

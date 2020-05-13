@@ -21,7 +21,7 @@ import org.helixj.core.*;
 import java.math.BigInteger;
 
 /**
- * Network parameters used by the pivxj unit tests (and potentially your own). This lets you solve a block using
+ * Network parameters used by the helixj unit tests (and potentially your own). This lets you solve a block using
  * {@link org.helixj.core.Block#solve()} by setting difficulty to the easiest possible.
  */
 public class UnitTestParams extends AbstractBitcoinNetParams {

@@ -94,8 +94,8 @@ public class BuildCheckpoints {
 
         //params = TestNet3Params.get();
         //suffix = "-testnet";
-        params = TestNet3Params.get();
-        suffix = "";
+        //params = TestNet3Params.get();
+        //suffix = "";
 
 
         final InetAddress ipAddress;
@@ -109,14 +109,14 @@ public class BuildCheckpoints {
                 return;
             }InetAddress.getLocalHost();
         } else {
-            ipAddress = InetAddress.getByName("202.5.21.31"); // InetAddress.getLocalHost();
+            ipAddress = InetAddress.getByName("seed1.helix-crypto.com"); // InetAddress.getLocalHost();
         }
         final PeerAddress peerAddress = new PeerAddress(ipAddress, params.getPort());
 
         // Sorted map of block height to StoredBlock object.
         final TreeMap<Integer, StoredBlock> checkpoints = new TreeMap<Integer, StoredBlock>();
 
-        // Configure pivxj to fetch only headers, not save them to disk, connect to a local fully synced/validated
+        // Configure helixj to fetch only headers, not save them to disk, connect to a local fully synced/validated
         // node and to save block headers that are on interval boundaries, as long as they are <1 month old.
 
         //Context.getOrCreate(params).initPivx(true, false);

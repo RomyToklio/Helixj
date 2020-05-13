@@ -506,7 +506,7 @@ public abstract class DatabaseFullPrunedBlockStore implements FullPrunedBlockSto
                 results.close();
             } catch (SQLException ex) {
                 throw new BlockStoreException("Database block store is not compatible with the current release.  " +
-                        "See pivxj release notes for further information: " + ex.getMessage());
+                        "See helixj release notes for further information: " + ex.getMessage());
             } finally {
                 if (ps != null && !ps.isClosed()) {
                     ps.close();

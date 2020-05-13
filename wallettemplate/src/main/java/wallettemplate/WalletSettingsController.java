@@ -168,7 +168,7 @@ public class WalletSettingsController {
 
         long birthday = datePicker.getValue().atStartOfDay().toEpochSecond(ZoneOffset.UTC);
         DeterministicSeed seed = new DeterministicSeed(Splitter.on(' ').splitToList(wordsArea.getText()), null, "", birthday);
-        // Shut down pivxj and restart it with the new seed.
+        // Shut down helixj and restart it with the new seed.
         Main.bitcoin.addListener(new Service.Listener() {
             @Override
             public void terminated(Service.State from) {

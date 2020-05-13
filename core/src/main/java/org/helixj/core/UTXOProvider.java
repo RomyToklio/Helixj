@@ -22,7 +22,7 @@ import java.util.List;
  * A UTXOProvider encapsulates functionality for returning unspent transaction outputs,
  * for use by the wallet or other code that crafts spends.
  *
- * <p>A {@link org.helixj.store.FullPrunedBlockStore} is an internal implementation within pivxj.</p>
+ * <p>A {@link org.helixj.store.FullPrunedBlockStore} is an internal implementation within helixj.</p>
  */
 public interface UTXOProvider {
 

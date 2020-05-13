@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * X509Utils provides tools for working with X.509 certificates and keystores, as used in the BIP 70 payment protocol.
  * For more details on this, see {@link org.helixj.protocols.payments.PaymentSession}, the article "Working with
- * the payment protocol" on the pivxj website, or the Bitcoin developer guide.
+ * the payment protocol" on the helixj website, or the Bitcoin developer guide.
  */
 public class X509Utils {
     /**
