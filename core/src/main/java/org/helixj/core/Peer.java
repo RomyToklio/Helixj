@@ -486,7 +486,7 @@ public class Peer extends PeerSocketHandler {
         }
         if (m == null) return;
 
-        //System.out.println("process message: "+m.getClass());
+        System.out.println("process message: "+m.getClass());
 
         // If we are in the middle of receiving transactions as part of a filtered block push from the remote node,
         // and we receive something that's not a transaction, then we're done.
@@ -496,14 +496,14 @@ public class Peer extends PeerSocketHandler {
         }
 
         // No further communication is possible until version handshake is complete.
-        /*
+
         if (!(m instanceof VersionMessage || m instanceof VersionAck || m instanceof SporkMessage
                 || (versionHandshakeFuture.isDone() && !versionHandshakeFuture.isCancelled()))) {
             String reason = "  " + ((m instanceof RejectMessage) ? ((RejectMessage) m).getReasonString() : "");
             throw new ProtocolException(
                     "Received " + m.getClass().getSimpleName() + " before version handshake is complete."+ reason);
         }
-        */
+
 
         if (m instanceof Ping) {
             processPing((Ping) m);

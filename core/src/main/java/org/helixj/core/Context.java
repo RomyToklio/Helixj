@@ -204,7 +204,7 @@ public class Context {
     // Pivx Specific
     //
 
-    public void initPivx(boolean liteMode, boolean allowInstantX) {
+    public void initHelix(boolean liteMode, boolean allowInstantX) {
         this.liteMode = liteMode;
         this.allowInstantX = allowInstantX;
 

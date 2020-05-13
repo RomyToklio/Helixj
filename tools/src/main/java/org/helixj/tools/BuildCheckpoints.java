@@ -119,7 +119,7 @@ public class BuildCheckpoints {
         // Configure helixj to fetch only headers, not save them to disk, connect to a local fully synced/validated
         // node and to save block headers that are on interval boundaries, as long as they are <1 month old.
 
-        //Context.getOrCreate(params).initPivx(true, false);
+        Context.getOrCreate(params).initHelix(true, false);
         final BlockStore store = new MemoryBlockStore(params);
         final BlockChain chain = new BlockChain(params, store);
         final PeerGroup peerGroup = new PeerGroup(params, chain);
