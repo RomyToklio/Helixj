@@ -17,3 +17,8 @@ checkpoints
 checkpoints-testnet.txt
 checkpoints.txt
 classes/artifacts/helixj_core_jar/helixj-core.jar
+core/build/
+wallettemplate/build/
+tools/build/
+examples/build/
+.vscode
