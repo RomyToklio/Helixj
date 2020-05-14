@@ -1156,11 +1156,7 @@ public class PeerGroup implements TransactionBroadcaster {
                         }
                         log.info("Tor ready");
                     }
-                    System.out.println("startAsync : ");
-
                     channels.startAsync();
-                    System.out.println("awaitRunning : ");
-
                     channels.awaitRunning();
                     triggerConnections();
                     setupPinging();
@@ -1563,11 +1559,8 @@ public class PeerGroup implements TransactionBroadcaster {
             // TODO: be more nuanced about which peer to download from.  We can also try
             // downloading from multiple peers and handle the case when a new peer comes along
             // with a longer chain after we thought we were done.
-            System.out.println("peers.isEmpty()"+peers.isEmpty());
 
             if (!peers.isEmpty()) {
-                System.out.println("startBlockChainDownloadFromPeer");
-
                 startBlockChainDownloadFromPeer(peers.iterator().next()); // Will add the new download listener
             }
         } finally {
