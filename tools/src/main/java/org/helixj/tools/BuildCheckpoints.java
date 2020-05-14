@@ -146,6 +146,7 @@ public class BuildCheckpoints {
             }
         });
 
+
         peerGroup.start();
         peerGroup.downloadBlockChain();
 
