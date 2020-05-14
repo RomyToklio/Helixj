@@ -486,8 +486,6 @@ public class Peer extends PeerSocketHandler {
         }
         if (m == null) return;
 
-        System.out.println("process message: "+m.getClass());
-
         // If we are in the middle of receiving transactions as part of a filtered block push from the remote node,
         // and we receive something that's not a transaction, then we're done.
         if (currentFilteredBlock != null && !(m instanceof Transaction)) {

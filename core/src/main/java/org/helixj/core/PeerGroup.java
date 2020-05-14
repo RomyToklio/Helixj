@@ -1131,6 +1131,7 @@ public class PeerGroup implements TransactionBroadcaster {
      */
     public ListenableFuture startAsync() {
         // This is run in a background thread by the Service implementation.
+
         if (chain == null) {
             // Just try to help catch what might be a programming error.
             log.warn("Starting up with no attached block chain. Did you forget to pass one to the constructor?");
@@ -1155,7 +1156,11 @@ public class PeerGroup implements TransactionBroadcaster {
                         }
                         log.info("Tor ready");
                     }
+                    System.out.println("startAsync : ");
+
                     channels.startAsync();
+                    System.out.println("awaitRunning : ");
+
                     channels.awaitRunning();
                     triggerConnections();
                     setupPinging();
@@ -1544,6 +1549,8 @@ public class PeerGroup implements TransactionBroadcaster {
     public void startBlockChainDownload(PeerDataEventListener listener) {
         lock.lock();
         try {
+            System.out.println("downloadPeer"+downloadPeer);
+
             if (downloadPeer != null) {
                 if (this.downloadListener != null) {
                     removeDataEventListenerFromPeer(downloadPeer, this.downloadListener);
@@ -1556,7 +1563,11 @@ public class PeerGroup implements TransactionBroadcaster {
             // TODO: be more nuanced about which peer to download from.  We can also try
             // downloading from multiple peers and handle the case when a new peer comes along
             // with a longer chain after we thought we were done.
+            System.out.println("peers.isEmpty()"+peers.isEmpty());
+
             if (!peers.isEmpty()) {
+                System.out.println("startBlockChainDownloadFromPeer");
+
                 startBlockChainDownloadFromPeer(peers.iterator().next()); // Will add the new download listener
             }
         } finally {
@@ -1690,12 +1701,11 @@ public class PeerGroup implements TransactionBroadcaster {
 
                         try {
                             // todo: here i have to implement the GetBlock
-                            //System.out.println("Peer pings sent: " + peer.getSentPingNumber());
-                            //if (peer.getSentPingNumber() > 5) {
-                            //    if (peer.isDownloadData()) {
-                            //        peer.startBlockChainDownload();
-                            //    }
-                            //}
+                            if (peer.getSentPingNumber() > 5) {
+                                if (peer.isDownloadData()) {
+                                    peer.startBlockChainDownload();
+                                }
+                            }
                         }catch (Exception e){
                             e.printStackTrace();
                         }
