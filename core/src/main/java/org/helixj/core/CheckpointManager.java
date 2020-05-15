@@ -134,7 +134,7 @@ public class CheckpointManager {
             int size;
             for (int i = 0; i < numCheckpoints; i++) {
 
-                if(((i+1) * 150) <= 90202){
+                if(((i+1) * 150) < 90202){
                     size = StoredBlock.COMPACT_SERIALIZED_SIZE;
                 }else {
                     size = StoredBlock.COMPACT_SERIALIZED_SIZE_ZEROCOIN;

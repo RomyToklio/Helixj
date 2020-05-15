@@ -256,7 +256,7 @@ public class Context {
             masternodeManager.setBlockChain(chain);
             masternodeSync.setBlockChain(chain);
         }else {
-            log.error("##### Pivx init not called!, this is going to be an issue in the future");
+            log.error("##### Helix init not called!, this is going to be an issue in the future");
         }
         if (instantSend!=null) {
             instantSend.setBlockChain(chain);

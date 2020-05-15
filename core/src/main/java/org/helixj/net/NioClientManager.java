@@ -146,8 +146,8 @@ public class NioClientManager extends AbstractExecutionThreadService implements 
 
     @Override
     public ListenableFuture<SocketAddress> openConnection(SocketAddress serverAddress, StreamConnection connection) {
-        if (!isRunning())
-            throw new IllegalStateException();
+        //if (!isRunning())
+           // throw new IllegalStateException();
         // Create a new connection, give it a connection as an attachment
         try {
             SocketChannel sc = SocketChannel.open();
