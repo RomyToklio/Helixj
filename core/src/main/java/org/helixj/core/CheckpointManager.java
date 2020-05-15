@@ -131,14 +131,24 @@ public class CheckpointManager {
             digestInputStream.on(true);
             int numCheckpoints = dis.readInt();
             checkState(numCheckpoints > 0);
-            final int size = StoredBlock.COMPACT_SERIALIZED_SIZE;
-            ByteBuffer buffer = ByteBuffer.allocate(size);
+            int size;
             for (int i = 0; i < numCheckpoints; i++) {
+
+                if(((i+1) * 150) <= 90202){
+                    size = StoredBlock.COMPACT_SERIALIZED_SIZE;
+                }else {
+                    size = StoredBlock.COMPACT_SERIALIZED_SIZE_ZEROCOIN;
+                }
+
+                ByteBuffer buffer = ByteBuffer.allocate(size);
                 if (dis.read(buffer.array(), 0, size) < size)
                     throw new IOException("Incomplete read whilst loading checkpoints.");
                 StoredBlock block = StoredBlock.deserializeCompact(params, buffer);
+
                 buffer.position(0);
                 checkpoints.put(block.getHeader().getTimeSeconds(), block);
+                System.out.println("Block height : "+block.getHeight());
+
             }
             Sha256Hash dataHash = Sha256Hash.wrap(digest.digest());
             log.info("Read {} checkpoints, hash is {}", checkpoints.size(), dataHash);
@@ -166,9 +176,17 @@ public class CheckpointManager {
             checkState(numCheckpoints > 0);
             // Hash numCheckpoints in a way compatible to the binary format.
             hasher.putBytes(ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(numCheckpoints).array());
-            final int size = StoredBlock.COMPACT_SERIALIZED_SIZE;
-            ByteBuffer buffer = ByteBuffer.allocate(size);
+            int size = StoredBlock.COMPACT_SERIALIZED_SIZE;
+            ByteBuffer buffer;
             for (int i = 0; i < numCheckpoints; i++) {
+                if(((i+1) * 150) <= 90202){
+                    size = StoredBlock.COMPACT_SERIALIZED_SIZE;
+                }else {
+                    size = StoredBlock.COMPACT_SERIALIZED_SIZE_ZEROCOIN;
+                }
+
+                buffer = ByteBuffer.allocate(size);
+
                 byte[] bytes = BASE64.decode(reader.readLine());
                 hasher.putBytes(bytes);
                 buffer.position(0);

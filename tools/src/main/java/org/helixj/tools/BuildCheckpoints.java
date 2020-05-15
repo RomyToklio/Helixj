@@ -109,7 +109,7 @@ public class BuildCheckpoints {
                 return;
             }InetAddress.getLocalHost();
         } else {
-            ipAddress = InetAddress.getByName("seed1.helix-crypto.com"); // InetAddress.getLocalHost();
+            ipAddress = InetAddress.getByName("crazyseeder.helix-crypto.com"); // InetAddress.getLocalHost();
         }
         final PeerAddress peerAddress = new PeerAddress(ipAddress, params.getPort());
 
@@ -142,6 +142,8 @@ public class BuildCheckpoints {
                     System.out.println(String.format("Checkpointing block %s at height %d, time %s",
                             block.getHeader().getHash(), block.getHeight(), Utils.dateTimeFormat(block.getHeader().getTime())));
                     checkpoints.put(height, block);
+                    //System.out.println(checkpoints);
+
                 }
             }
         });
@@ -151,7 +153,6 @@ public class BuildCheckpoints {
         peerGroup.downloadBlockChain();
 
         checkState(checkpoints.size() > 0);
-
         final File plainFile = new File("checkpoints" + suffix);
         final File textFile = new File("checkpoints" + suffix + ".txt");
 
@@ -163,7 +164,7 @@ public class BuildCheckpoints {
         store.close();
 
         // Sanity check the created files.
-        sanityCheck(plainFile, checkpoints.size());
+        sanityCheck(plainFile,  checkpoints.size());
         sanityCheck(textFile, checkpoints.size());
     }
 
@@ -177,8 +178,13 @@ public class BuildCheckpoints {
         dataOutputStream.writeInt(0);  // Number of signatures to read. Do this later.
         digestOutputStream.on(true);
         dataOutputStream.writeInt(checkpoints.size());
-        ByteBuffer buffer = ByteBuffer.allocate(StoredBlock.COMPACT_SERIALIZED_SIZE);
+        ByteBuffer buffer;
         for (StoredBlock block : checkpoints.values()) {
+            if(block.getHeight() < 90202) {
+                buffer = ByteBuffer.allocate(StoredBlock.COMPACT_SERIALIZED_SIZE);
+            }else {
+                buffer = ByteBuffer.allocate(StoredBlock.COMPACT_SERIALIZED_SIZE_ZEROCOIN);
+            }
             block.serializeCompact(buffer);
             dataOutputStream.write(buffer.array());
             buffer.position(0);
@@ -196,8 +202,13 @@ public class BuildCheckpoints {
         writer.println("TXT CHECKPOINTS 1");
         writer.println("0"); // Number of signatures to read. Do this later.
         writer.println(checkpoints.size());
-        ByteBuffer buffer = ByteBuffer.allocate(StoredBlock.COMPACT_SERIALIZED_SIZE);
+        ByteBuffer buffer;
         for (StoredBlock block : checkpoints.values()) {
+            if(block.getHeight() < 90202) {
+                buffer = ByteBuffer.allocate(StoredBlock.COMPACT_SERIALIZED_SIZE);
+            }else {
+                buffer = ByteBuffer.allocate(StoredBlock.COMPACT_SERIALIZED_SIZE_ZEROCOIN);
+            }
             block.serializeCompact(buffer);
             writer.println(CheckpointManager.BASE64.encode(buffer.array()));
             buffer.position(0);

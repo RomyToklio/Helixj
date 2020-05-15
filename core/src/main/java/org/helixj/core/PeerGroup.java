@@ -1694,7 +1694,8 @@ public class PeerGroup implements TransactionBroadcaster {
 
                         try {
                             // todo: here i have to implement the GetBlock
-                            if (peer.getSentPingNumber() > 5) {
+                            //if (peer.getSentPingNumber() != 0) {
+                            if (peer.getSentPingNumber() >= 5) {
                                 if (peer.isDownloadData()) {
                                     peer.startBlockChainDownload();
                                 }
